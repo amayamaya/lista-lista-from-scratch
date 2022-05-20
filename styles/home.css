@@ -1,1 +1,19 @@
-/* add home page styles here */
+label {
+    font-family: 'VT323', monospace;    
+}
+
+input {
+    color: black;
+    border: dashed black;
+    background-color: transparent;
+    border-radius: .25em;
+}
+    
+.wish-button {
+    background-color: transparent;
+    margin: none;
+    padding: none;
+    height: 1em;
+    width: 6em;
+
+}
