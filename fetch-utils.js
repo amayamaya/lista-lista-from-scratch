@@ -49,8 +49,7 @@ export async function createListItem(desire, abundance) {
 }
 
 export async function fetchListItems() {
-    console.log('hello');
-    const response = await client.from('desires').select('*');
+    const response = await client.from('desires').select('*').order('created_at');
     console.log(response);
     if (response.error) {
         console.error(response.error.message);
@@ -59,6 +58,13 @@ export async function fetchListItems() {
     }
 }
 
-// function checkError({ data, error }) {
-//     return error ? console.error(error) : data;
+// export async function togglePurchasedItems() {
+//     console.log(item);
+//     const response = await client.from('wish-list').update({ purchased: !item.purchased }).match({ id: item.id});
+//     if (response.error) {
+//         console.error(response.error.message);
+//     } else {
+//         return response.data;
+//     }
 // }
+
