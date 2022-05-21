@@ -144,6 +144,10 @@ button {
     margin-top: .5em;
 }
 
+button:hover {
+    cursor: pointer;
+}
+
 #sign-up form {
     color: red;
 }
