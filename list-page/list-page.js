@@ -1,4 +1,4 @@
-import { logout, fetchListItems } from '../fetch-utils.js';
+import { logout, fetchListItems, togglePurchasedItems, deleteAll } from '../fetch-utils.js';
 import { renderItem } from '../render-utils.js';
 
 const logoutButton = document.getElementById('logout');
@@ -13,13 +13,25 @@ const wishListEl = document.getElementById('wish-list');
 async function displayListItems() {
     wishListEl.textContent = '';
     const data = await fetchListItems();
-    console.log(data);
+    // console.log(data);
     if (data) {
         for (let item of data) {
             // renderItem(item);
             const itemEl = renderItem(item);
+            itemEl.addEventListener('click', async (e) => {
+                e.preventDefault();
+                await togglePurchasedItems(item);
+                displayListItems();
+
+            });
             wishListEl.append(itemEl);
         }
     }
 }
+const deleteButton = document.getElementById('delete-button');
+deleteButton.addEventListener('click', async () => {
+    await deleteAll();
+    displayListItems();
+});
 displayListItems();
+

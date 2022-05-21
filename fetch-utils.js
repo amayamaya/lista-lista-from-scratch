@@ -50,7 +50,7 @@ export async function createListItem(desire, abundance) {
 
 export async function fetchListItems() {
     const response = await client.from('desires').select('*').order('created_at');
-    console.log(response);
+    // console.log(response);
     if (response.error) {
         console.error(response.error.message);
     } else {
@@ -58,13 +58,17 @@ export async function fetchListItems() {
     }
 }
 
-// export async function togglePurchasedItems() {
-//     console.log(item);
-//     const response = await client.from('wish-list').update({ purchased: !item.purchased }).match({ id: item.id});
-//     if (response.error) {
-//         console.error(response.error.message);
-//     } else {
-//         return response.data;
-//     }
-// }
+export async function togglePurchasedItems(item) {
+    // console.log(item);
+    const response = await client.from('desires').update({ purchased: !item.purchased }).match({ id: item.id});
+    if (response.error) {
+        console.error(response.error.message);
+    } else {
+        return response.data;
+    }
+}
 
+export async function deleteAll() {
+    const response = await client.from('desires').delete().match({ user_id: getUser().id });
+    return response.data;
+}
