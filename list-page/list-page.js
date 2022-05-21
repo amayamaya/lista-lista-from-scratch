@@ -7,6 +7,12 @@ logoutButton.addEventListener('click', () => {
     logout();
 });
 
+const createButton = document.getElementById('create');
+
+createButton.addEventListener('click', () => {
+    return (window.location.href = '../create-page');
+});
+
 const wishListEl = document.getElementById('wish-list');
 // const error = document.getElementById('error');
 
@@ -22,7 +28,6 @@ async function displayListItems() {
                 e.preventDefault();
                 await togglePurchasedItems(item);
                 displayListItems();
-
             });
             wishListEl.append(itemEl);
         }
@@ -34,4 +39,3 @@ deleteButton.addEventListener('click', async () => {
     displayListItems();
 });
 displayListItems();
-
